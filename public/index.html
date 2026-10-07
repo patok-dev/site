@@ -45,8 +45,8 @@
   <h2>Install</h2>
   <p>macOS (arm64, x86_64) and Linux (x86_64).</p>
   <div class="install">
-    <pre><code id="cmd">curl -fsSL https://patok.dev/install.sh | sh</code></pre>
-    <button type="button" id="copy">Copy</button>
+    <pre><code>curl -fsSL https://patok.dev/install.sh | sh</code></pre>
+    <button type="button" class="copy">Copy</button>
   </div>
   <p>The script downloads the latest release, verifies its SHA-256 against the
     release checksums, and installs <code>patok</code> to <code>~/.local/bin</code>.
@@ -55,15 +55,19 @@
 
   <h2>Uninstall</h2>
   <p>Removes the binary and the per-user data directory:</p>
-  <pre><code>curl -fsSL https://patok.dev/install.sh | sh -s -- --clean</code></pre>
+  <div class="install">
+    <pre><code>curl -fsSL https://patok.dev/install.sh | sh -s -- --clean</code></pre>
+    <button type="button" class="copy">Copy</button>
+  </div>
 
   <footer><a href="https://github.com/patok-dev/patok">GitHub</a></footer>
 </main>
 <script>
-  document.getElementById('copy').addEventListener('click', function (e) {
-    var b = e.currentTarget;
-    navigator.clipboard.writeText(document.getElementById('cmd').textContent).then(function () {
-      b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500);
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      navigator.clipboard.writeText(b.previousElementSibling.textContent.trim()).then(function () {
+        b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500);
+      });
     });
   });
 </script>
