@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Workflow loop: four steps connected clockwise">
+  <defs>
+    <linearGradient id="g-top" gradientUnits="userSpaceOnUse" x1="220" y1="140" x2="292" y2="140">
+      <stop offset="0" stop-color="#4c8dff"/><stop offset="1" stop-color="#3ddc97"/>
+    </linearGradient>
+    <linearGradient id="g-right" gradientUnits="userSpaceOnUse" x1="372" y1="220" x2="372" y2="292">
+      <stop offset="0" stop-color="#3ddc97"/><stop offset="1" stop-color="#ffb648"/>
+    </linearGradient>
+    <linearGradient id="g-bottom" gradientUnits="userSpaceOnUse" x1="292" y1="372" x2="220" y2="372">
+      <stop offset="0" stop-color="#ffb648"/><stop offset="1" stop-color="#ff6b8b"/>
+    </linearGradient>
+    <linearGradient id="g-left" gradientUnits="userSpaceOnUse" x1="140" y1="292" x2="140" y2="220">
+      <stop offset="0" stop-color="#ff6b8b"/><stop offset="1" stop-color="#4c8dff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="#0f141c"/>
+
+  <!-- arrows, clockwise: each blends from its source box color to its target box color -->
+  <path d="M220 140L262 140" fill="none" stroke="url(#g-top)" stroke-width="22"/>
+  <polygon points="262,167 292,140 262,113" fill="#3ddc97"/>
+  <path d="M372 220L372 262" fill="none" stroke="url(#g-right)" stroke-width="22"/>
+  <polygon points="345,262 372,292 399,262" fill="#ffb648"/>
+  <path d="M292 372L250 372" fill="none" stroke="url(#g-bottom)" stroke-width="22"/>
+  <polygon points="250,345 220,372 250,399" fill="#ff6b8b"/>
+  <path d="M140 292L140 250" fill="none" stroke="url(#g-left)" stroke-width="22"/>
+  <polygon points="167,250 140,220 113,250" fill="#4c8dff"/>
+
+  <!-- boxes -->
+  <rect x="72" y="72" width="136" height="136" rx="28" fill="#4c8dff"/>
+  <rect x="304" y="72" width="136" height="136" rx="28" fill="#3ddc97"/>
+  <rect x="304" y="304" width="136" height="136" rx="28" fill="#ffb648"/>
+  <rect x="72" y="304" width="136" height="136" rx="28" fill="#ff6b8b"/>
+</svg>
