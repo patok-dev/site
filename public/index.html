@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>patok</title>
+<meta name="description" content="Autonomous build loop driving agent CLIs.">
+<style>
+  :root { --bg:#fff; --fg:#16181d; --muted:#5b6270; --card:#f3f4f7; --accent:#2f6df6; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0f1115; --fg:#e8eaee; --muted:#9aa2b1; --card:#1a1d24; --accent:#6b9bff; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  main { max-width:42rem; margin:0 auto; padding:5rem 1rem 3rem; }
+  h1 { font-size:3rem; margin:0; letter-spacing:-.02em; }
+  .tag { color:var(--muted); font-size:1.25rem; margin:.25rem 0 2.5rem; }
+  h2 { font-size:1.1rem; margin:2.5rem 0 .5rem; }
+  pre { background:var(--card); border-radius:8px; padding:1rem; overflow-x:auto;
+    margin:.5rem 0; font:.9rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .install { position:relative; }
+  button { position:absolute; top:.5rem; right:.5rem; background:var(--bg); color:var(--fg);
+    border:1px solid var(--muted); border-radius:6px; padding:.2rem .6rem; font:inherit;
+    font-size:.8rem; cursor:pointer; }
+  p, li { color:var(--muted); }
+  a { color:var(--accent); }
+  footer { margin-top:4rem; font-size:.9rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>patok</h1>
+  <p class="tag">Autonomous build loop driving agent CLIs.</p>
+
+  <h2>Install</h2>
+  <p>macOS (arm64, x86_64) and Linux (x86_64).</p>
+  <div class="install">
+    <pre><code id="cmd">curl -fsSL https://patok.dev/install.sh | sh</code></pre>
+    <button type="button" id="copy">Copy</button>
+  </div>
+  <p>The script downloads the latest release, verifies its SHA-256 against the
+    release checksums, and installs <code>patok</code> to <code>~/.local/bin</code>.
+    Make sure that directory is on your <code>PATH</code>.
+    <a href="/install.sh">Read the script</a> first if you like.</p>
+
+  <h2>Uninstall</h2>
+  <p>Removes the binary and the per-user data directory:</p>
+  <pre><code>curl -fsSL https://patok.dev/install.sh | sh -s -- --clean</code></pre>
+
+  <footer><a href="https://github.com/patok-dev/patok">GitHub</a></footer>
+</main>
+<script>
+  document.getElementById('copy').addEventListener('click', function (e) {
+    var b = e.currentTarget;
+    navigator.clipboard.writeText(document.getElementById('cmd').textContent).then(function () {
+      b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500);
+    });
+  });
+</script>
+</body>
+</html>
