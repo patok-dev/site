@@ -1,0 +1,42 @@
+:root { --bg:#fff; --fg:#16181d; --muted:#5b6270; --card:#f3f4f7; --accent:#2f6df6; --on-accent:#fff; --line:#dfe2e8; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0f1115; --fg:#e8eaee; --muted:#9aa2b1; --card:#1a1d24; --accent:#6b9bff; --on-accent:#0f1115; --line:#2a2e38; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); }
+code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+p, li { color:var(--muted); }
+
+.nav { max-width:64rem; margin:0 auto; padding:1rem; display:flex; align-items:center; justify-content:space-between; }
+.nav .home { display:flex; align-items:center; gap:.6rem; color:var(--fg); text-decoration:none; font-weight:600; font-size:1.2rem; }
+.nav .home img { width:2rem; height:2rem; }
+.nav .links { display:flex; gap:1.25rem; }
+.nav .links a { color:var(--muted); text-decoration:none; font-size:.95rem; }
+.nav .links a:hover { color:var(--fg); }
+
+.hero { max-width:64rem; margin:0 auto; padding:3.5rem 1rem 2rem; text-align:center; }
+.hero h1 { font-size:clamp(2rem,5.5vw,3.25rem); line-height:1.15; margin:0 auto; max-width:20ch; letter-spacing:-.02em; }
+.hero .lead { font-size:1.2rem; max-width:36rem; margin:1.25rem auto 2rem; }
+.cta { display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; }
+.btn { display:inline-block; padding:.7rem 1.5rem; border-radius:8px; font-weight:600;
+  text-decoration:none; border:1px solid var(--line); color:var(--fg); }
+.btn.primary { background:var(--accent); border-color:var(--accent); color:var(--on-accent); }
+.btn:hover { filter:brightness(.92); }
+
+.shot { max-width:64rem; margin:2rem auto 0; padding:0 1rem; }
+.shot img { display:block; width:100%; height:auto; border-radius:12px;
+  border:1px solid var(--line); box-shadow:0 20px 50px rgba(0,0,0,.25); }
+
+main.page { max-width:42rem; margin:0 auto; padding:2rem 1rem 3rem; }
+main.page h1 { font-size:2.25rem; margin:1rem 0 .25rem; letter-spacing:-.02em; }
+main.page h2 { font-size:1.1rem; margin:2.5rem 0 .5rem; }
+pre { background:var(--card); border-radius:8px; padding:1rem; overflow-x:auto;
+  margin:.5rem 0; font:.9rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; }
+.install { position:relative; }
+.copy { position:absolute; top:.5rem; right:.5rem; background:var(--bg); color:var(--fg);
+  border:1px solid var(--muted); border-radius:6px; padding:.2rem .6rem; font:inherit;
+  font-size:.8rem; cursor:pointer; }
+
+footer { max-width:64rem; margin:4rem auto 0; padding:0 1rem 2rem; font-size:.9rem; color:var(--muted); }

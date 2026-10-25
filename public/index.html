@@ -7,69 +7,38 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="Autonomous build loop driving agent CLIs.">
-<style>
-  :root { --bg:#fff; --fg:#16181d; --muted:#5b6270; --card:#f3f4f7; --accent:#2f6df6; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#0f1115; --fg:#e8eaee; --muted:#9aa2b1; --card:#1a1d24; --accent:#6b9bff; }
-  }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg);
-    font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
-  main { max-width:42rem; margin:0 auto; padding:5rem 1rem 3rem; }
-  .brand { display:flex; align-items:center; gap:1rem; }
-  .brand img { width:3.5rem; height:3.5rem; flex:none; }
-  h1 { font-size:3rem; margin:0; letter-spacing:-.02em; }
-  .tag { color:var(--muted); font-size:1.25rem; margin:.25rem 0 2.5rem; }
-  h2 { font-size:1.1rem; margin:2.5rem 0 .5rem; }
-  pre { background:var(--card); border-radius:8px; padding:1rem; overflow-x:auto;
-    margin:.5rem 0; font:.9rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; }
-  code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
-  .install { position:relative; }
-  button { position:absolute; top:.5rem; right:.5rem; background:var(--bg); color:var(--fg);
-    border:1px solid var(--muted); border-radius:6px; padding:.2rem .6rem; font:inherit;
-    font-size:.8rem; cursor:pointer; }
-  p, li { color:var(--muted); }
-  a { color:var(--accent); }
-  footer { margin-top:4rem; font-size:.9rem; color:var(--muted); }
-</style>
+<meta name="description" content="Let your coding agent work through a task list unattended.">
+<meta property="og:title" content="patok">
+<meta property="og:description" content="Let your coding agent work through a task list unattended.">
+<meta property="og:image" content="https://patok.dev/screenshot.png">
+<meta property="og:url" content="https://patok.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<main>
-  <div class="brand">
-    <img src="/logo.svg" alt="" width="56" height="56">
-    <h1>patok</h1>
+<nav class="nav">
+  <a class="home" href="/"><img src="/logo.svg" alt="" width="32" height="32">patok</a>
+  <div class="links">
+    <a href="/install/">Install</a>
+    <a href="https://github.com/patok-dev/patok">GitHub</a>
   </div>
-  <p class="tag">Autonomous build loop driving agent CLIs.</p>
+</nav>
 
-  <h2>Install</h2>
-  <p>macOS (arm64, x86_64) and Linux (x86_64).</p>
-  <div class="install">
-    <pre><code>curl -fsSL https://patok.dev/install.sh | sh</code></pre>
-    <button type="button" class="copy">Copy</button>
+<header class="hero">
+  <h1>Let your coding agent work through a task list unattended</h1>
+  <p class="lead">patok is an autonomous build loop for agent CLIs. Write a spec and a task
+    list, then let it research, plan, build and review each task, committing as it goes.</p>
+  <div class="cta">
+    <a class="btn primary" href="/install/">Install</a>
+    <a class="btn" href="https://github.com/patok-dev/patok">View on GitHub</a>
   </div>
-  <p>The script downloads the latest release, verifies its SHA-256 against the
-    release checksums, and installs <code>patok</code> to <code>~/.local/bin</code>.
-    Make sure that directory is on your <code>PATH</code>.
-    <a href="/install.sh">Read the script</a> first if you like.</p>
+</header>
 
-  <h2>Uninstall</h2>
-  <p>Removes the binary and the per-user data directory:</p>
-  <div class="install">
-    <pre><code>curl -fsSL https://patok.dev/install.sh | sh -s -- --clean</code></pre>
-    <button type="button" class="copy">Copy</button>
-  </div>
+<div class="shot">
+  <img src="/screenshot.png" width="2683" height="1645"
+    alt="patok terminal UI showing the Research, Plan, Build, Review pipeline, live agent output and the task list">
+</div>
 
-  <footer><a href="https://github.com/patok-dev/patok">GitHub</a></footer>
-</main>
-<script>
-  document.querySelectorAll('.copy').forEach(function (b) {
-    b.addEventListener('click', function () {
-      navigator.clipboard.writeText(b.previousElementSibling.textContent.trim()).then(function () {
-        b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500);
-      });
-    });
-  });
-</script>
+<footer><a href="https://github.com/patok-dev/patok">GitHub</a></footer>
 </body>
 </html>
