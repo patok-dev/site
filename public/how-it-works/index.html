@@ -28,15 +28,37 @@
     separate research, plan, build and review sessions using the coding-agent CLIs you
     already have, then commits the result.</p>
 
+  <h2>Start with a spec</h2>
+  <p>A <code>SPEC.md</code> at the project root holds what every task needs to know: the core
+    business rules and the architecture of the app. It's free-form Markdown that you write
+    by hand and keep up to date as the project evolves.</p>
+<pre><code># Recipe box
+
+## Business rules
+- One shared collection, no accounts
+- A recipe needs a title and at least one ingredient
+- Tags are lowercase, unique per recipe, max 10
+- Deleting a recipe is soft: it stays recoverable for 30 days
+
+## Architecture
+- Rust, axum, SQLite via sqlx
+- JSON API under /api/v1, handlers in src/api/, domain logic in src/core/
+- Full-text search uses SQLite FTS5, kept in sync by triggers</code></pre>
+  <p>Tasks stay small and say only what to change. The spec carries the rest. The research and
+    planner agents read it before a task is planned, and the reviewer checks the result against it,
+    so every task is held to the same rules and structure without repeating them in each task. The
+    discovery agent reads it too, and when there's no task list yet, the research agent uses it to
+    draft the first batch of tasks.</p>
+
   <h2>You write the tasks</h2>
-  <p>Tasks live in a <code>TASKS.md</code> at the project root. Any line starting with
-    <code>- [ ]</code> is a task; everything else in the file is left alone.</p>
+  <p>Tasks live in a <code>TASKS.md</code> at the project root. Write them yourself or edit the
+    ones patok drafted from the spec. Any line starting with <code>- [ ]</code> is a task;
+    everything else in the file is left alone.</p>
 <pre><code>- [ ] T1.1: Add a login form with email and password
 - [ ] T1.2: Validate the form and show inline errors
 - [ ] T2.1: Persist sessions across restarts</code></pre>
   <p>The number before the dot groups tasks into a phase. patok ticks a task
-    (<code>- [x]</code>) only once it has passed its checks. You can also keep a
-    <code>SPEC.md</code> for the agents to read as context.</p>
+    (<code>- [x]</code>) only once it has passed its checks.</p>
 
   <h2>Each task goes through the loop</h2>
   <ol class="steps">
