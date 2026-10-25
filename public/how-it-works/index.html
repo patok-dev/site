@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How patok works</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="How patok turns a Markdown task list into commits: research, plan, build and review, one task at a time.">
+<link rel="stylesheet" href="/style.css">
+<script src="/theme.js"></script>
+</head>
+<body>
+<nav class="nav">
+  <a class="home" href="/"><img src="/logo.svg" alt="" width="32" height="32">patok</a>
+  <div class="links">
+    <a href="/how-it-works/">How it works</a>
+    <a href="/install/">Install</a>
+    <a href="https://github.com/patok-dev/patok">GitHub</a>
+    <button type="button" class="theme-toggle" aria-label="Toggle dark theme"></button>
+  </div>
+</nav>
+
+<main class="page">
+  <h1>How it works</h1>
+  <p>patok works through a Markdown task list one task at a time. For each task it runs
+    separate research, plan, build and review sessions using the coding-agent CLIs you
+    already have, then commits the result.</p>
+
+  <h2>You write the tasks</h2>
+  <p>Tasks live in a <code>TASKS.md</code> at the project root. Any line starting with
+    <code>- [ ]</code> is a task; everything else in the file is left alone.</p>
+<pre><code>- [ ] T1.1: Add a login form with email and password
+- [ ] T1.2: Validate the form and show inline errors
+- [ ] T2.1: Persist sessions across restarts</code></pre>
+  <p>The number before the dot groups tasks into a phase. patok ticks a task
+    (<code>- [x]</code>) only once it has passed its checks. You can also keep a
+    <code>SPEC.md</code> for the agents to read as context.</p>
+
+  <h2>Each task goes through the loop</h2>
+  <ol class="steps">
+    <li class="research"><strong>Research</strong>
+      <p>A read-only session looks through the code and writes a report. Simple tasks can skip it.</p></li>
+    <li class="plan"><strong>Plan</strong>
+      <p>A read-only session produces a plan. It must list the file operations and how to verify
+        them, or it is sent back once and then rejected.</p></li>
+    <li class="build"><strong>Build</strong>
+      <p>The builder implements the task and finishes by stating what it claims to have done.</p></li>
+    <li class="review"><strong>Review</strong>
+      <p>A fresh-context reviewer reads the diff, runs the project's build and tests, and fixes what
+        it finds in the same pass.</p></li>
+    <li><strong>Commit</strong>
+      <p>The result is committed with git, so your hooks and signing apply.</p></li>
+  </ol>
+  <p>Every stage can use a different agent and model. When the queue is empty, an optional
+    <strong class="agent-discover">Discover</strong> pass scans the project and appends follow-up tasks, so the loop can
+    keep going.</p>
+
+  <h2>Reviews follow phases</h2>
+  <p>By default patok reviews once per group: tasks sharing a number, like T1.1 and T1.2, are
+    reviewed together against the whole group's diff when the last one finishes. Fewer review
+    sessions, and the reviewer sees the full change.</p>
+
+  <h2>When something fails</h2>
+  <p>If the build or the review fails, patok commits the work as <code>WIP</code>, leaves the task
+    unchecked and stops, rather than piling more work on a broken state. Progress is stored in
+    <code>TASKS.md</code>, so the next run picks up at the first unfinished task.</p>
+
+  <h2>Bring your own agents</h2>
+  <p>patok drives <strong>Claude Code</strong>, <strong>Codex</strong> and <strong>Vibe</strong>
+    CLIs found on your <code>PATH</code>. You choose the provider and model per role.</p>
+
+  <h2>Interactive or unattended</h2>
+  <ul>
+    <li><code>patok</code> opens the terminal UI, where you can watch the live output, edit the queue
+      and stop or start the loop.</li>
+    <li><code>patok headless</code> runs without the UI, streams output to stdout and exits
+      <code>0</code> when every task is done or <code>1</code> on failure.</li>
+    <li><code>patok tasks add|list|edit|…</code> manages pending tasks from the command line.</li>
+  </ul>
+
+  <h2>Good to know</h2>
+  <ul>
+    <li>patok works directly in your project directory and commits to the current branch. Use a
+      branch you're happy to have commits on.</li>
+    <li>Pushing is off by default; you can enable auto-push per project.</li>
+    <li>A soft stop lets the running task finish; <code>--now</code> kills the agent immediately.</li>
+  </ul>
+
+  <p class="cta-end"><a class="btn primary" href="/install/">Install patok</a></p>
+</main>
+
+<footer><a href="https://github.com/patok-dev/patok">GitHub</a></footer>
+<script src="/site.js"></script>
+</body>
+</html>
