@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>patok quickstart</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="From install to your first unattended run in a few minutes.">
+<link rel="stylesheet" href="/style.css">
+<script src="/theme.js"></script>
+</head>
+<body>
+<nav class="nav">
+  <a class="home" href="/"><img src="/logo.svg" alt="" width="32" height="32">patok</a>
+  <div class="links">
+    <a href="/how-it-works/">How it works</a>
+    <a href="/quickstart/">Quickstart</a>
+    <a href="/install/">Install</a>
+    <a href="https://github.com/patok-dev/patok">GitHub</a>
+    <button type="button" class="theme-toggle" aria-label="Toggle dark theme"></button>
+  </div>
+</nav>
+
+<main class="page">
+  <h1>Quickstart</h1>
+  <p>From a fresh install to a running build loop. New to patok? Read
+    <a href="/how-it-works/">how it works</a> first.</p>
+
+  <h2>Before you start</h2>
+  <ul>
+    <li><a href="/install/">Install patok</a>.</li>
+    <li>Install an agent CLI and log in once. By default patok uses <strong>Claude Code</strong>
+      (<code>claude</code>); <code>codex</code> and <code>vibe</code> work too.</li>
+    <li>Use a git repository with at least one commit, on a branch you're happy to have commits
+      on. Commit or stash your own changes first: the agents edit your working tree directly.</li>
+    <li>Consider adding <code>SPEC.md</code> and <code>TASKS.md</code> to your
+      <code>.gitignore</code>, or patok will commit them with everything else.</li>
+  </ul>
+
+  <h2>1. Start patok and write a spec</h2>
+  <div class="install">
+    <pre><code>cd my-project
+patok</code></pre>
+    <button type="button" class="copy">Copy</button>
+  </div>
+  <p>Write a <code>SPEC.md</code> in the project root with the business rules and architecture
+    every task should respect.</p>
+  <p>Not sure where to start? Press <code>I</code> (Shift+i) to open your agent CLI in the project
+    and ask it to draft the spec. Close the session with <code>Ctrl+]</code>, then read the result
+    and fix anything wrong: every task will be held to it.</p>
+
+  <h2>2. Create the task list</h2>
+  <p>Press <strong>Enter</strong> at <strong>[ Enter ] create queue</strong>. The research agent
+    reads the spec and the project and writes the first <code>TASKS.md</code>. Review it and edit
+    anything you like, it's plain Markdown.</p>
+
+  <h2>3. Start the loop</h2>
+  <p>Press <strong>Enter</strong> again. patok works through the tasks one by one while the output
+    pane shows the agents live and the task list tracks progress. Press <code>Esc</code> to
+    stop; run <code>patok</code> again to resume where it left off.</p>
+
+  <h2>If a task fails</h2>
+  <p>The work is committed as <code>WIP: …</code>, the task stays unchecked and the loop stops.
+    Look at the last commit, fix the task text or the code, and start again. Pushing is off by
+    default, so nothing leaves your machine until you push.</p>
+
+  <p class="cta-end"><a class="btn primary" href="/how-it-works/">How it works</a></p>
+</main>
+
+<footer><a href="https://github.com/patok-dev/patok">GitHub</a></footer>
+<script src="/site.js"></script>
+</body>
+</html>
